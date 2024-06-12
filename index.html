@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h2>Posts</h2>
+    {% for post in posts %}
+        <div class="post">
+            <h3><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h3>
+            <p>{{ post.content[:100] }}...</p>
+            <a href="{{ url_for('edit', post_id=post.id) }}">Edit</a>
+            <a href="{{ url_for('delete', post_id=post.id) }}" onclick="return confirm('Are you sure?')">Delete</a>
+        </div>
+    {% endfor %}
+{% endblock %}
